@@ -1,4 +1,4 @@
-package chap08Polymorphism.ex02;
+package chap08Polymorphism.ex02to04;
 
 public class Shapes {
     private static RandomShapeGenerator gen =
