@@ -6,14 +6,21 @@
 // You must install the Javassist library from
 // http://sourceforge.net/projects/jboss/ }
 package net.mindview.atunit;
-import javassist.*;
-import javassist.expr.*;
-import javassist.bytecode.*;
-import javassist.bytecode.annotation.*;
-import java.io.*;
-import java.util.*;
-import net.mindview.util.*;
-import static net.mindview.util.Print.*;
+
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
+import javassist.bytecode.AnnotationsAttribute;
+import javassist.bytecode.MethodInfo;
+import javassist.bytecode.annotation.Annotation;
+import net.mindview.util.BinaryFile;
+import net.mindview.util.ProcessFiles;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+
+import static net.mindview.util.Print.print;
 
 public class AtUnitRemover
 implements ProcessFiles.Strategy {
