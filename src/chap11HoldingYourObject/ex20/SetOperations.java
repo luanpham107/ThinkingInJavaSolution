@@ -1,6 +1,8 @@
-package chap11HoldingYourObject.ex16;
+package chap11HoldingYourObject.ex20;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SetOperations {
     public static void main(String[] args) {
@@ -20,6 +22,5 @@ public class SetOperations {
         System.out.println("set2 removed from set1: " + set1);
         Collections.addAll(set1, "X Y Z".split(" "));
         System.out.println("‘X Y Z’ added to set1: " + set1);
-        //U
     }
 }
