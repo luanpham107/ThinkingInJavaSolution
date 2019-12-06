@@ -10,10 +10,11 @@ public class UniqueWords {
         Collections.addAll(vowels,
                 'U', 'E', 'O', 'A', 'I', 'u', 'e', 'o', 'a', 'i');
         List<Integer> vowelCountValue = new ArrayList<Integer>(vowels.size());
-        Map<Character, Integer> vowelAppearCount = new HashMap<Character, Integer>();
+        Map<String, Integer> vowelAppearCount = new HashMap<String, Integer>();
 
         for (Character c: vowels) {
-            vowelAppearCount.put(c, 0);
+            String _t = c.toString();
+            vowelAppearCount.put(_t, 0);
         }
 
         int allVowels = 0;
@@ -25,7 +26,7 @@ public class UniqueWords {
                     allVowels++;
                     if(vowelAppearCount.containsKey(v)){
                         int i = vowelAppearCount.get(v);
-                        vowelAppearCount.put(v, i+1);
+                        vowelAppearCount.put(v.toString(), i+1);
                     }
                 }
             }
@@ -33,8 +34,13 @@ public class UniqueWords {
         }
         System.out.println();
         System.out.print("Total vowels: " + allVowels);
+        // Sort
+        List<String> x =  new LinkedList<>(vowelAppearCount.keySet());
+        Collections.sort(x, String.CASE_INSENSITIVE_ORDER);
         System.out.println();
-        System.out.print("Vowels occrrence: " + vowelAppearCount);
+        for(String i : x){
+            System.out.print("Vowels occurrence: " + i + vowelAppearCount.get(i));
+        }
     }
 
     public static void main(String[] args) {
