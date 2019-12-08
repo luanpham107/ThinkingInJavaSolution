@@ -11,11 +11,15 @@ public class UniqueWords {
                 'U', 'E', 'O', 'A', 'I', 'u', 'e', 'o', 'a', 'i');
         List<Integer> vowelCountValue = new ArrayList<Integer>(vowels.size());
         Map<String, Integer> vowelAppearCount = new HashMap<String, Integer>();
-
-        for (Character c: vowels) {
-            String _t = c.toString();
-            vowelAppearCount.put(_t, 0);
+        List<String> sortVowels = new LinkedList<String>();
+        Iterator<Character> itChar = vowels.iterator();
+        while(itChar.hasNext()){
+            sortVowels.add(itChar.next().toString());
         }
+
+        Collections.sort(sortVowels, String.CASE_INSENSITIVE_ORDER);
+        System.out.println();
+        System.out.println("After sorted: " + sortVowels);
 
         int allVowels = 0;
         for(String s : st) {
@@ -24,23 +28,18 @@ public class UniqueWords {
                 if(vowels.contains(v)) {
                     count++;
                     allVowels++;
-                    if(vowelAppearCount.containsKey(v)){
-                        int i = vowelAppearCount.get(v);
-                        vowelAppearCount.put(v.toString(), i+1);
-                    }
+                    vowelAppearCount.put(v.toString(), count);
                 }
             }
-            System.out.print(s + ": " + count + ", ");
         }
         System.out.println();
         System.out.print("Total vowels: " + allVowels);
         // Sort
-        List<String> x =  new LinkedList<>(vowelAppearCount.keySet());
-        Collections.sort(x, String.CASE_INSENSITIVE_ORDER);
+//        List<String> x =  new LinkedList<>(vowelAppearCount.keySet());
+//        Collections.sort(x, String.CASE_INSENSITIVE_ORDER);
         System.out.println();
-        for(String i : x){
-            System.out.print("Vowels occurrence: " + i + vowelAppearCount.get(i));
-        }
+        System.out.println("Vowels occurrence: " + vowelAppearCount.values());
+        System.out.println(vowelAppearCount);
     }
 
     public static void main(String[] args) {
