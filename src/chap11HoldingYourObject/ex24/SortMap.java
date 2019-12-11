@@ -17,17 +17,6 @@ class Animal {
 }
 
 public class SortMap {
-    public static void printMap(Map<String,Animal> map) {
-        Set s = map.entrySet();
-        Iterator it = s.iterator();
-        while ( it.hasNext() ) {
-            Map.Entry entry = (Map.Entry) it.next();
-            String key = (String) entry.getKey();
-            Animal value = (Animal) entry.getValue();
-            System.out.println(key + " => " + value);
-        }//while
-        System.out.println("========================");
-    }//printMap
 
     public static void main(String[] args) {
         Map<String, Animal> m = new LinkedHashMap<String, Animal>();
@@ -37,15 +26,15 @@ public class SortMap {
         m.put("Four", new Animal("Cat", 4));
         m.put("Five", new Animal("Dragon", 2));
 
-        List<String> list = new ArrayList<String>();
-        Iterator<String> it = m.keySet().iterator();
+        Set<String> ss = new TreeSet<String>(m.keySet());
+        Iterator<String> it = ss.iterator();
+        System.out.println("Before sorted: " + m);
         while(it.hasNext()){
-            list.add(it.next());
+            String s = (String)it.next();
+            Animal _temp = m.get(s);
+            m.remove(s);
+            m.put(s, _temp);
         }
-        System.out.println("Seperate List: " + list);
-        Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
-        System.out.println("Sorted List: " + list);
-        Map<String, Animal> treeMap = new TreeMap<String, Animal>(m);
-        printMap(treeMap);
+        System.out.println("After sorted: " + m);
     }
 }
